@@ -1,0 +1,54 @@
+<%- include ../partials/header %> <%- include ../partials/categories-navbar %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 m-auto">
+      <h1 class="mt-4 mb-4">Sign In Page</h1>
+      <!-- Flash message -->
+      <% if(errorMsg !=null && errorMsg.length>0) {%>
+      <div id="flash-msg" class="alert alert-danger">
+        <%=errorMsg %>
+      </div>
+      <%}%>
+      <% if(successMsg !=null && successMsg.length>0) {%>
+        <div id="flash-msg" class="alert alert-success">
+          <%=successMsg %>
+        </div>
+        <%}%>
+      <form action="/user/signin" method="POST">
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input type="email" class="form-control" name="email" id="email" />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            name="password"
+            id="password"
+          />
+        </div>
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+        <button type="submit" class="btn btn-primary button-style">
+          Sign In
+        </button>
+      </form>
+      
+      <p class="mt-3">
+        <!-- verify Email?  -->
+        <a class="btn btn-primary button-style" href="/user/emailVerification"> Verify Email</a>
+      </p>
+      <p class="mt-3">
+        <!-- Forgot Password?  -->
+        <a class="btn btn-primary button-style" href="/user/forgot"> Reset Password</a>
+      </p>
+      <p class="mt-3">
+        <!-- Don't have an account?  -->
+        <a class="btn btn-primary button-style" href="/user/signup"> Sign Up!</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<%- include ../partials/footer %>

@@ -1,0 +1,14 @@
+{
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es2021": true
+    },
+    "plugins": ["prettier"],
+    "extends": ["google","plugin:prettier/recommended"],
+    "parserOptions": {
+        "ecmaVersion": "latest"
+    },
+    "rules": {
+    }
+}

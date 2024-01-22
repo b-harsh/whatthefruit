@@ -1,0 +1,32 @@
+<%- include ../partials/header %> <%- include ../partials/categories-navbar %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 m-auto">
+      <h1 class="mt-4 mb-4">Forgot Password Page</h1>
+      <!-- Flash message -->
+      <% if(errorMsg !=null && errorMsg.length>0) {%>
+      <div id="flash-msg" class="alert alert-danger">
+        <%=errorMsg %>
+      </div>
+      <%}%>
+      <% if (successMsg != null && successMsg) { %>
+        <div id="success" class="alert alert-success">
+          <%= successMsg %>
+        </div>
+      <% } %>
+      <form action="/user/forgot" method="POST">
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input type="email" class="form-control" name="email" id="email" />
+        </div>
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+        <button type="submit" class="btn btn-primary button-style">
+          Get Email
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<%- include ../partials/footer %>

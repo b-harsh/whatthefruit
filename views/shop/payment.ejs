@@ -1,0 +1,45 @@
+<%- include ../partials/header %> 
+<%- include ../partials/categories-navbar %>
+
+<div class="container mt-4 mb-5" >
+  <div class="col-md-8 m-auto text-center">
+    <!-- Checkout form -->
+    <form action="/checkout/order" method = "post" id="checkout-form">
+      <button id="rzp-button1" type="submit" class="btn btn-dark button-style btn-lg" data-totalCost="<%= session.total_cost%>">
+        Confirm payment of ₹<%= session.total_cost %>
+      </button>
+    </form>
+  </div>
+</div>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+  var options = {
+    key: 'rzp_test_WoJC6BEFN4DCXN',
+    order_id:'<%=session.razorpay_order_id%>',
+    amount:'<%=session.total_cost%>',
+    currency: "INR",
+    name: "WTF",
+    description: 'Desc1',
+    callback_url: "/checkout/order/success",
+    theme: {
+      color: "#3399cc",
+    }
+  };
+  var rzp1 = new Razorpay(options);
+  document.getElementById('checkout-form').addEventListener('submit', function(event) {
+    rzp1.open();
+  });
+
+  rzp1.on('payment.failed', function (response) {
+    alert(response.error.code);
+    alert(response.error.description);
+    alert(response.error.source);
+    alert(response.error.step);
+    alert(response.error.reason);
+    alert(response.error.metadata.order_id);
+    alert(response.error.metadata.payment_id);
+  });
+</script>
+
+<%- include ../partials/footer %>

@@ -1,0 +1,59 @@
+<nav class="navbar navbar-expand-md navbar-custom navbar-dark">
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarNav"
+    aria-controls="navbarNav"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse mx-auto order-0" id="navbarNav">
+    <ul class="navbar-nav mx-auto">
+      <li <% if (pageName === "All Products") { %>
+        class="nav-item active"
+        <%} else {%>
+          class="nav-item"
+        <%} %> 
+      >
+        <a class="nav-link" href="/products/">All</a>
+      </li>
+
+      <% if (categories) { %>
+        <% categories.forEach( category => { %>
+          <li <% if (pageName === category.title) { %>
+            class="nav-item active"
+            <% } else { %>
+              class="nav-item"
+            <% } %> 
+          >
+          <a class="nav-link" href="/products/<%= category.slug %>"><%= category.title %></a>
+        </li>
+          <% }) %>
+      <% } %>
+    </ul>
+    <div class="col-lg-6 text-center text-lg-right">
+      <div class="d-inline-flex align-items-center">
+          <a class="text-dark px-2" href="https://www.facebook.com/profile.php?id=100071788611958&mibextid=ZbWKwL" target="_blank">
+              <i class="fab fa-facebook-f"></i>
+          </a>
+          <a class="text-dark px-2" href="https://www.linkedin.com/company/whatthefruit/" target="_blank">
+              <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a class="text-dark px-2" href="https://www.instagram.com/whatthefruit.ngp/" target="_blank">
+              <i class="fab fa-instagram"></i>
+          </a>
+          <a class="text-dark px-2" href="https://link.zomato.com/xqzv/rshare?id=37560562ff8b97a8" target="_blank">
+            <img src="https://cdn.iconscout.com/icon/free/png-256/zomato-1937646-1637644.png" height='20px';width='20px' alt="">
+          </a>
+          <a class="text-dark px-2" href="https://www.swiggy.com/menu/578645?source=sharing" target="_blank">
+            <img src="https://cdn.iconscout.com/icon/free/png-256/swiggy-1613371-1369418.png" height='25px';width='25px' alt="">
+          </a>
+          
+      </div>
+  </div>
+  </div>
+</nav>

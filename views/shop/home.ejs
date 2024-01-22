@@ -1,0 +1,332 @@
+<%- include ../partials/header %> <%- include ../partials/categories-navbar%>
+
+<!-- Top Carousel -->
+
+
+<!--top corosel end-->
+
+<!-- <div class="col-lg-9"> -->
+  <div id="header-carousel" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+          <div id="ull" class="carousel-item active" style="height: 410px;">
+              <img id="home-img" class="" src="http://res.cloudinary.com/dxah5vbut/image/upload/v1690087552/header-1.jpg" alt="Image">
+              <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                  <div class="p-3" style="max-width: 700px;">
+                      <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Off Your First Order</h4>
+                      <h3 class="display-4 text-white font-weight-bold mb-4">Fresh Fruits and Fruit Salads</h3>
+                      <a href="/products" class="btn btn-light py-2 px-3">Buy Now</a>
+                  </div>
+              </div>
+          </div>
+          <div id="ull" class="carousel-item" style="height: 410px;">
+              <img id="home-img" class="" src="http://res.cloudinary.com/dxah5vbut/image/upload/v1690087554/header-2.jpg" alt="Image">
+              <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                  <div class="p-3" style="max-width: 700px;">
+                      <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Off Your First Order</h4>
+                      <h3 class="display-4 text-white font-weight-semi-bold mb-4">Cold Pressed Juices and Fruit Shakes</h3>
+                      <a href="/products" class="btn btn-light py-2 px-3">Buy Now</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <a class="carousel-control-prev" href="#header-carousel" data-slide="prev">
+          <div class="btn btn-dark" style="width: 45px; height: 45px;">
+              <span class="carousel-control-prev-icon mb-n2"></span>
+          </div>
+      </a>
+      <a class="carousel-control-next" href="#header-carousel" data-slide="next">
+          <div class="btn btn-dark" style="width: 45px; height: 45px;">
+              <span class="carousel-control-next-icon mb-n2"></span>
+          </div>
+      </a>
+  </div>
+
+
+   <!-- Featured Start -->
+   <div class="container-fluid pt-5">
+    <div class="row px-xl-5 pb-3">
+        <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+            <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
+                <img src="http://res.cloudinary.com/dxah5vbut/image/upload/v1690087555/icon1.jpg" alt="" height="50px" width="50px">
+                <h5 class="font-weight-semi-bold m-0">100% Natural</h5>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+            <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
+                <img src="http://res.cloudinary.com/dxah5vbut/image/upload/v1690087556/icon2.jpg" alt="" height="50px" width="50px">
+                <h5 class="font-weight-semi-bold m-0">Cold Pressed</h5>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+            <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
+                <img src="http://res.cloudinary.com/dxah5vbut/image/upload/v1690087557/icon3.jpg" alt="" height="50px" width="50px">
+                <h5 class="font-weight-semi-bold m-0">No added Sugars</h5>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+            <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
+                <img src="http://res.cloudinary.com/dxah5vbut/image/upload/v1690087559/icon4.jpg" alt="" height="50px" width="50px">
+                <h5 class="font-weight-semi-bold m-0">No added Preservatives</h5>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Featured End -->
+
+
+
+
+
+<!-- Store's categories section -->
+<div class="container">
+  <h3 class="text-center mb-3 mt-3">Store's Categories</h3>
+  <% if (categories) { %>
+  <div class="row text-center m-auto">
+    <% for(let i=0; i<4; i++){ %>
+    <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+      <% console.log(categories[i]) %>
+      <a class="title-link" href="/products/<%=categories[i].slug%>">
+        <img src="http://res.cloudinary.com/dxah5vbut/image/upload/v1690087561/p<%=i%>.jpeg" alt="category" class="circle-img" />
+        <h4 class="mb-3 mt-3"><%=categories[i].title%></h4>
+      </a>
+    </div>
+    <%} %>
+    <!-- <div class="col-lg-1 col-md-1 col-sm-12 text-center mx-auto align-items-end">
+      <a href="/products">
+        <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+      </a>
+    </div> -->
+  </div>
+  <%}%>
+</div>
+
+<hr class="gradient-style" />
+
+<!-- Latest products slider -->
+<div class="container mb-3 mt-3">
+  <!--Carousel Wrapper-->
+  <div
+    id="products-carousel"
+    class="carousel slide carousel-multi-item"
+    data-ride="carousel"
+  >
+    <!--Controls-->
+    <div class="controls-top mb-2">
+      <div class="row">
+        <div class="col-8">
+          <h3>Latest Products</h3>
+        </div>
+        <div class="col-3">
+          <div class="controls float-right hidden-xs">
+            <a
+              class="left fa fa-chevron-left btn btn"
+              href="#products-carousel"
+              data-slide="prev"
+            ></a
+            ><a
+              class="right fa fa-chevron-right btn"
+              href="#products-carousel"
+              data-slide="next"
+            ></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/.Controls-->
+
+
+    
+
+
+
+
+    <!--Slides-->
+    <div class="carousel-inner" role="listbox">
+      <!--First slide-->
+      <div class="carousel-item active">
+        <div class="row">
+          <% for(let i=0; i<4; i++) { %>
+          <div class="col-md-3 product-index-box">
+            <div class="single-product d-flex flex-column h-100">
+              <a
+                class="title-link"
+                href="/products/<%=products[i].category.slug%>/<%=products[i]._id%>"
+              >
+                <img
+                  src="<%= products[i].imagePath %>"
+                  alt="fruit"
+                  class="img-fluid"
+              /></a>
+              <div class="product-info">
+                <a
+                  class="title-link"
+                  href="/products/<%=products[i].category.slug%>/<%=products[i]._id%>"
+                >
+                  <h6 class="mt-2 mb-2"><%= products[i].title %></h6></a
+                >
+                <% if (products[i].discountPrice) { %>
+                  <div class="price">
+                    <span class="regular-price">
+                      <del>₹<%= products[i].price %></del>
+                    </span>
+                    <span class="discounted-price" style="color: rgb(5, 107, 5);font-family: 'Bungee', cursive; font-size: 1.5em;">
+                      ₹<%= products[i].discountPrice %>
+                    </span>
+                  </div>
+                <% } else { %>
+                  <div class="price">
+                    ₹<%= products[i].price %>
+                  </div>
+                <% } %>
+              </div>
+              <% if(products[i].available) {%>
+              <a
+                href="/add-to-cart/<%=products[i]._id%>"
+                class="btn btn-block btn-secondary button-style mt-auto mb-2"
+              >
+                Add to Shopping Cart
+              </a>
+              <% } else { %>
+              <a
+                href="#"
+                class="btn btn-block btn-danger button-style-danger mt-2 mb-2"
+              >
+                Sold out
+              </a>
+              <%} %>
+            </div>
+          </div>
+          <%}%>
+        </div>
+      </div>
+      <!--/.First slide-->
+
+      <!--Second slide-->
+      <div class="carousel-item">
+        <div class="row">
+          <% for(let i=4; i<8; i++) { %>
+          <div class="col-md-3 product-index-box">
+            <div class="single-product d-flex flex-column h-100">
+              <a
+                class="title-link"
+                href="/products/<%=products[i].category.slug%>/<%=products[i]._id%>"
+              >
+                <img
+                  src="<%= products[i].imagePath %>"
+                  alt="fruit"
+                  class="img-fluid"
+              /></a>
+              <div class="product-info">
+                <a
+                  class="title-link"
+                  href="/products/<%=products[i].category.slug%>/<%=products[i]._id%>"
+                >
+                  <h6 class="mt-2 mb-2"><%= products[i].title %></h6></a
+                >
+                <% if (products[i].discountPrice) { %>
+                  <div class="price">
+                    <span class="regular-price">
+                      <del>₹<%= products[i].price %></del>
+                    </span>
+                    <span class="discounted-price" style="color: rgb(5, 107, 5);font-family: 'Bungee', cursive; font-size: 1.5em;">
+                      ₹<%= products[i].discountPrice %>
+                    </span>
+                  </div>
+                <% } else { %>
+                  <div class="price">
+                    ₹<%= products[i].price %>
+                  </div>
+                <% } %>
+              </div>
+              <% if(products[i].available) {%>
+              <a
+                href="/add-to-cart/<%=products[i]._id%>"
+                class="btn btn-block btn-secondary button-style mt-auto mb-2"
+              >
+                Add to Shopping Cart
+              </a>
+              <% } else { %>
+              <a
+                href="#"
+                class="btn btn-block btn-danger button-style-danger mt-2 mb-2"
+              >
+                Sold out
+              </a>
+              <%} %>
+            </div>
+          </div>
+          <%}%>
+        </div>
+      </div>
+      <!--/.Second slide-->
+
+      <!--Third slide-->
+      <div class="carousel-item">
+        <div class="row">
+          <% for(let i=8; i<12; i++) { %>
+          <div class="col-md-3 product-index-box">
+            <div class="single-product d-flex flex-column h-100">
+              <a
+                class="title-link"
+                href="/products/<%=products[i].category.slug%>/<%=products[i]._id%>"
+              >
+                <img
+                  src="<%= products[i].imagePath %>"
+                  alt="fruit"
+                  class="img-fluid"
+              /></a>
+              <div class="product-info">
+                <a
+                  class="title-link"
+                  href="/products/<%=products[i].category.slug%>/<%=products[i]._id%>"
+                >
+                  <h6 class="mt-2 mb-2"><%= products[i].title %></h6></a
+                >
+                <% if (products[i].discountPrice) { %>
+                  <div class="price">
+                    <span class="regular-price">
+                      <del>₹<%= products[i].price %></del>
+                    </span>
+                    <span class="discounted-price" style="color: rgb(5, 107, 5);font-family: 'Bungee', cursive; font-size: 1.5em;">
+                      ₹<%= products[i].discountPrice %>
+                    </span>
+                  </div>
+                <% } else { %>
+                  <div class="price">
+                    ₹<%= products[i].price %>
+                  </div>
+                <% } %>
+              </div>
+              <% if(products[i].available) {%>
+              <a
+                href="/add-to-cart/<%=products[i]._id%>"
+                class="btn btn-block btn-secondary button-style mt-auto mb-2"
+              >
+                Add to Shopping Cart
+              </a>
+              <% } else { %>
+              <a
+                href="#"
+                class="btn btn-block btn-danger button-style-danger mt-2 mb-2"
+              >
+                Sold out
+              </a>
+              <%} %>
+            </div>
+          </div>
+          <%}%>
+        </div>
+      </div>
+      <!--/.Third slide-->
+    </div>
+    <!--/.Slides-->
+  </div>
+  <!--/.Carousel Wrapper-->
+</div>
+
+
+
+
+  
+
+<%- include ../partials/footer %>

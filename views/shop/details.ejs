@@ -1,0 +1,61 @@
+<% layout('layouts/boilerplate') %> 
+
+<div class="card text-center">
+    <div class="card-header">
+     <h3> Order Details</h3>
+    </div>
+    <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">details.ejs <%= order1.name %> </li>
+            <li class="list-group-item">Email : <%= order1.email %> </li>
+            <li class="list-group-item"><h4><%= tshirt.title %></h4> </li>
+            <li class="list-group-item">Quantity: <%= order1.quantity %> </li>
+            <li class="list-group-item">Size : <%= order1.size %> </li>
+            <li class="list-group-item">Price : &#8377;<%= tshirt.sprice %> </li>
+            <li class="list-group-item">Total Price : &#8377;<%=order1.totalprice%>  </li>
+            
+          </ul>
+      
+      <button id="rzp-button1">Pay</button>
+      <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+      <script>
+      var options = {
+          key: 'rzp_test_FR4vLNWM4fcblG', // Enter the Key ID generated from the Dashboard
+          amount: '<%= amount %>', // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+          "currency": "INR",
+          "name": "TEE-REX",
+          description: '<%= tshirt.title %>',
+          "order_id": '<%= order_id %>', //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+          "callback_url": "/tshirts/<%= tshirt._id %>/api/payment/checkout/success",
+          "prefill": {
+              "name": "Vivek Kumar",
+              "email": "vivek.kumar@example.com",
+              "contact": "9999999999"
+          },
+          "notes": {
+              "address": "Jasper, ISM"
+          },
+          "theme": {
+              "color": "#3399cc"
+          }
+      };
+      var rzp1 = new Razorpay(options);
+      document.getElementById('rzp-button1').onclick = function(e){
+          rzp1.open();
+          e.preventDefault();
+      
+          rzp1.on('payment.failed', function (response){
+          alert(response.error.code);
+          alert(response.error.description);
+          alert(response.error.source);
+          alert(response.error.step);
+          alert(response.error.reason);
+          alert(response.error.metadata.order_id);
+          alert(response.error.metadata.payment_id);
+      })
+      }
+      
+      </script>
+
+    </div>
+  </div>

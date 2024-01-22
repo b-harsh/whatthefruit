@@ -1,0 +1,80 @@
+<%- include ../partials/header %> 
+<%- include ../partials/categories-navbar %>
+
+<div class="container mt-4 mb-5">
+  <!-- Flash messages -->
+  <div class="row mt-3 mb-3">
+    <div class="col-md-8 m-auto">
+      <% if (errorMsg) { %>
+      <div id="error" class="alert alert-danger">
+        <%= errorMsg %>
+      </div>
+      <% } else { %>
+      <div id="error" class="alert alert-danger d-none"></div>
+      <% } %>
+    </div>
+  </div>
+  <div class="col-md-8 m-auto">
+    <!-- Checkout form -->
+    <form action="/paymentConfirmation" method = "post" id="checkout-form">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="pincode">Pincode</label>
+            <select id="pincode" class="form-control" required name="pincode">
+              <option value="" selected disabled>Select a Pincode</option>
+              <% deliveryCharges.forEach(function(item) { %>
+                <option value="<%= item.pincode %>"><%= item.pincode %></option>
+              <% }); %>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="address">Address</label>
+            <input
+              type="text"
+              id="address"
+              class="form-control"
+              required
+              name="address"
+            />
+          </div>
+        </div>
+      </div>
+      <button id="rzp-button1" type="submit" class="btn btn-dark button-style" data-totalCost="<%= cart.totalCost%>">
+        Pay <%= cart.totalCost %>
+      </button>
+    </form>
+  </div>
+</div>
+
+<script>
+  let amountInput = document.getElementById('rzp-amount');
+  let updatedTotalCost;
+  document.addEventListener('DOMContentLoaded', function() {
+    let pincodeSelect = document.getElementById('pincode');
+    let payButton = document.getElementById('rzp-button1');
+    pincodeSelect.addEventListener('change', function() {
+      let selectedPincode = this.value;
+      let totalCost = parseFloat(payButton.dataset.totalcost);
+      console.log(payButton.dataset);
+
+      fetch(`/delivery_charges?pincode=${selectedPincode}`)
+        .then(response => response.json())
+        .then(deliveryCharges => {
+          let deliveryCharge = deliveryCharges.find(item => item.pincode === selectedPincode).delivery_charge;
+          updatedTotalCost = totalCost + parseFloat(deliveryCharge);
+          payButton.textContent = `Pay ${updatedTotalCost} (+ ${deliveryCharge} Delivery Charges)`;
+          amountInput.value = updatedTotalCost;
+        })
+        .catch(error => {
+          console.error('Error fetching delivery charges:', error);
+        });
+    });
+  });
+</script>
+
+
+<%- include ../partials/footer %>
+

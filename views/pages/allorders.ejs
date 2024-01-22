@@ -1,0 +1,31 @@
+<% layout('layouts/boilerplate') %>
+
+    <div>
+      <div>
+        <!-- <img src="https://res.cloudinary.com/cloud0310/image/upload/v1662127872/Tee-Rex/bnn_skyt0y.jpg" class="img-fluid" alt="..."> -->
+          <h1 class="text-center">All Orders</h1><br>
+      </div>
+  
+      
+      <div class='cards_order d-flex justify-content-around flex-wrap mb-3 crd'>
+              <% for(let order of orders ) {%>
+                  <div class="card mb-3 " style="width: 18rem;">
+                      <img src="<%= order.img_url %> " class="card-img-top" alt="...">
+                      <div class="card-body d-flex flex-column">
+                        <h5 class="card-title"><%= order.name %> </h5>
+                        <h5 class="card-title"><%= order.email %> </h5>
+                        <div class="d-flex justify-content-center">
+                          <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><%= order.title %> </li>
+                          <li class="list-group-item"> Quantity: <%= order.quantity %> </li>
+                          <li class="list-group-item"> Size : <%= order.size %> </li>
+                          <li class="list-group-item"> Price / Tshirt : &#8377; <%= order.price %> </li>
+                          <li class="list-group-item my-1"> Total Price:  &#8377;<%= order.totalprice %></li>
+                        </ul>
+                        </div>
+                      </div>
+                    </div>
+      
+                  <% } %> 
+          </div> 
+    </div>
